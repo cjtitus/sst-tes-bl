@@ -2,8 +2,8 @@ import bluesky.preprocessors as bpp
 from bluesky.plan_stubs import mv
 from bluesky.plans import rel_scan
 from databroker.core import SingleRunCache
-from startup import samplex, samplez, sampler, i1
-from frames import deg_to_rad, rad_to_deg
+from sst_core.api import samplex, samplez, sampler, i1
+from sst_base.frames import deg_to_rad, rad_to_deg
 import numpy as np
 
 #need to fix imports, test, etc, actually hook up the max logic, and do a derivative scan version

@@ -1,11 +1,9 @@
 from bluesky import RunEngine
-from bluesky.plans import scan, count, list_scan, rel_scan
-from bluesky.plan_stubs import mv, abs_set
-from bluesky.callbacks import LiveTable
 from databroker import Broker
 from ophyd.sim import det, motor
-from .motors import Manipulator
-from .detectors import SynI1
+from motors import Manipulator
+from detectors import SynI1
+from frames import vec, Bar
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -15,13 +13,13 @@ RE = RunEngine({})
 db = Broker.named('temp')
 RE.subscribe(db.insert)
 
+# Slightly misaligned manipulator
+p1 = vec(10, 10, 0)
+p2 = vec(10, 10, 1)
+p3 = vec(0, 9, 0)
+bar = Bar(p1, p2, p3, width=19.5, height=130, nsides=4)
 
-p1 = vec(1, 0, 0)
-p2 = vec(0, 0, 1)
-p3 = vec(0, 0, 0)
-frame = Frame(p1, p2, p3)
-
-man = Manipulator(frame)
+man = Manipulator(bar, name='manipulator')
 
 samplex = man.x
 sampley = man.y

@@ -1,4 +1,4 @@
-from sst_core.api import *
+from sst_common.api import *
 from .alignment import *
 from .startup import RE, db
 
